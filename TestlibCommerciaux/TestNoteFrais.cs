@@ -20,7 +20,15 @@ namespace TestlibCommerciaux
             Assert.IsNotNull(result, "La classe NoteFrais n'existe pas");
             return result;
         }
-
+        private Type GetCommercialType()
+        {
+            // Act
+            var result = UtilsHelper.GetClassType(typeof(Commercial).Assembly, "Commercial");
+            // var result = typeof(Commercial).Assembly.GetTypes().SingleOrDefault(t => t.Name.Equals("Commercial", StringComparison.OrdinalIgnoreCase));
+            // Assert
+            Assert.IsNotNull(result, "La classe Commercial n'existe pas");
+            return result;
+        }
         [TestMethod]
         public void TestClassExists()
         {
@@ -34,7 +42,7 @@ namespace TestlibCommerciaux
         {
             // Arrange
             Type type = GetNoteFraislType();
-            Type commercialType = Type.GetType("Commercial");
+            Type commercialType = GetCommercialType();
             DateTime date = new DateTime(2023, 1, 1);
 
 
