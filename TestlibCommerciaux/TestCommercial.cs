@@ -15,8 +15,8 @@ namespace TestlibCommerciaux
         private Type GetCommercialType()
         {
             // Act
-           var result = UtilsHelper.GetClassType(typeof(Commercial).Assembly, "Commercial");
-           // var result = typeof(Commercial).Assembly.GetTypes().SingleOrDefault(t => t.Name.Equals("Commercial", StringComparison.OrdinalIgnoreCase));
+            var result = UtilsHelper.GetClassType(typeof(Commercial).Assembly, "Commercial");
+            // var result = typeof(Commercial).Assembly.GetTypes().SingleOrDefault(t => t.Name.Equals("Commercial", StringComparison.OrdinalIgnoreCase));
             // Assert
             Assert.IsNotNull(result, "La classe Commercial n'existe pas");
             return result;
@@ -175,7 +175,7 @@ namespace TestlibCommerciaux
             Assert.IsTrue(typeof(System.Collections.IEnumerable).IsAssignableFrom(result.GetType()),
                                 "La méthode 'getMesNoteFrais' doit retourner une collection.");
 
-            }
+        }
 
         [TestMethod]
         public void TestAjouterNoteFraisTransport()
@@ -338,5 +338,4 @@ namespace TestlibCommerciaux
     }
 
 }
-
 

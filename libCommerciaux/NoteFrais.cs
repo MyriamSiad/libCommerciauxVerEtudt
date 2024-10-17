@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,41 +9,68 @@ namespace libCommerciaux
 {
     public class NoteFrais
     {
-        private DateTime dateNoteFrais;
-        private Commercial leCommercial;
+
+        private DateTime dateNoteFrais = new DateTime(2023,1,1);
+        private Commercial leCommercial = new Commercial();
         private string NoteFraisType;
-        private bool estRembourse = false ;
-        private double montantARembourse = 0;
+      
+        private bool estRembourse = false;
+        private double montantARembourser = 0;
         private int numero = 0 ;
   
 
 
-        public NoteFrais() { }
+        public NoteFrais() {
 
-        public NoteFrais(DateTime date, Commercial c)
+         
+
+        }
+
+       public NoteFrais(DateTime date, Commercial c)
         {
-            leCommercial = new Commercial();
-            date = new DateTime(2023, 1, 1);
+            this.leCommercial = c;
+            this.dateNoteFrais = date;
+         
+            c.ajouterNoteFrais(this);
+
+            
 
 
         }
 
-        public NoteFrais(DateTime date,double montant )
+        public NoteFrais(DateTime date, Commercial c, double montant)
         {
-            //c = new Commercial();
+            this.leCommercial = c;
             this.dateNoteFrais = date;
+
+            c.ajouterNoteFrais(this);
+
+            this.montantARembourser = montant;
+           
+
+
+
+        }
+
+       public NoteFrais(DateTime date,double montant )
+        {
+
+            this.dateNoteFrais = date;
+            leCommercial = new Commercial();
+          
 
 
         }
 
         public NoteFrais(DateTime date, Commercial c, string NoteFaisType)
         {
-            c = new Commercial();
-            date = new DateTime();
+            this.leCommercial = c;
+            this.dateNoteFrais = date;
             this.NoteFraisType = NoteFaisType;
+         
         }
 
-        public DateTime GetDate() { return dateNoteFrais; }
+        public DateTime GetDate() { return dateNoteFrais = new DateTime(); }
 
         public Commercial getLeCommercial() { return leCommercial; }
 
@@ -50,36 +78,45 @@ namespace libCommerciaux
 
         public int getNumero() { return numero; }
 
-        public void setRembourse(bool rembourse) { this.estRembourse = rembourse; }
+        public void setRembourse() { this.estRembourse = true; }
 
         public double getMontantARembourser()
-        { return montantARembourse; }
+        { return montantARembourser; }
 
-        public bool getEstRembourse() { return estRembourse = true; }
-
-        public double calculMontantARembourser(double rembourser)
+        public void setMontantARembourser( )
         {
-            return rembourser - getMontantARembourser();
-
+           this.montantARembourser = calculMontantARembourser();
         }
 
-        public void setMontantARembourser(double montantARembourser)
-        {
-            this.montantARembourse = montantARembourser;
+
+        public bool getEstRembourse() 
+        { return estRembourse;
         }
 
+      
+
+
+
+        public virtual double calculMontantARembourser() { return 0; }
+
+        /*public virtual void setMontantARembourser(double montantARembourser)
+        {
+            this.montantARembourser = montantARembourser;
+        }
+        */
         
 
-        public override string ToString()
+        public virtual string ToString()
         {
             string flag = "Non remboursé";
+
             if(getEstRembourse() == true)
             {
                 flag = "Est remboursé";
             }
          
             
-            string str = $"Numéro : {numero} - Date : {dateNoteFrais} - Montant à remboruser: {montantARembourse} euros -{flag}";
+            string str = $"Numéro : {numero} - Date : {dateNoteFrais} - Montant à rembourser: {montantARembourser} euros - {flag}";
             return str;
         }
 

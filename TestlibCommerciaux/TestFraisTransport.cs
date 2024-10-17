@@ -35,7 +35,7 @@ namespace TestlibCommerciaux
             Assert.IsTrue(UtilsHelper.ClassExists(typeof(Commercial).Assembly, "FraisTransport"), "La classe n'existe pas");
 
         }
-  [TestMethod]
+        [TestMethod]
         public void TestFraisTransportConstructor()
         {
             // Arrange
@@ -90,7 +90,7 @@ namespace TestlibCommerciaux
         {
             // Arrange
             var fraisTransportType = GetFraisTransportType();
-  var commercialType = GetCommercialType();
+            var commercialType = GetCommercialType();
             var date = new DateTime(2023, 1, 1);
             var commercial = Activator.CreateInstance(commercialType, new object[] { "Dupont", "Jean", 5, 'A' });
             int nbKm = 100;
@@ -102,9 +102,9 @@ namespace TestlibCommerciaux
                 null,
                 new Type[] { typeof(DateTime), commercialType, typeof(int) },
                 null);
-           
+
             object fraisTransport = constructeur.Invoke(new object[] { date, commercial, nbKm });
-                     
+
             MethodInfo toStringMethod = fraisTransportType.GetMethod("ToString");
             Assert.IsNotNull(toStringMethod, "La méthode ToString n'existe pas dans la classe Commercial.");
             string resultat = (string)toStringMethod.Invoke(fraisTransport, null);

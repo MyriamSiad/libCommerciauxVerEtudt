@@ -94,7 +94,7 @@ namespace TestlibCommerciaux
 
             // Act
             var constructorInfo = repasMidiType.GetConstructor(new[] { typeof(DateTime), commercialType, typeof(double) });
-          
+
 
             var repasMidi = constructorInfo.Invoke(new object[] { date, commercial, montantFacture });
 

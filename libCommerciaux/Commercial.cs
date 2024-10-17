@@ -1,16 +1,21 @@
 ﻿namespace libCommerciaux
 {
-    public class Commercial
+    public class Commercial 
     {
         private string nom;
         private string prenom;
         private int puissanceVoiture;
         private char categorie;
-        private List<NoteFrais> mesNotes; 
+       
+        private List<NoteFrais> mesNotes = new List<NoteFrais>();
+        private List<Nuite> mesNuites = new List<Nuite>();
+        private List<FraisTransport> mesTransports = new List<FraisTransport>();
+        private List<RepasMidi> mesRepasMidi = new List<RepasMidi>();
+
 
         public Commercial() 
         {
-            mesNotes = new List<NoteFrais>();
+          // mesNotes = new List<NoteFrais>();
         }
 
         public Commercial(string nom, string prenom, int puissanceVoiture, char categorie)
@@ -19,14 +24,13 @@
             this.prenom = prenom;
             this.puissanceVoiture = puissanceVoiture;
             this.categorie = categorie;
-         
+            mesNotes = new List<NoteFrais>();
 
         }
 
         public List<NoteFrais> getMesNoteFrais() 
         {
-            mesNotes = new List<NoteFrais>();
-            return mesNotes;
+           return this.mesNotes;
         }
 
         public Commercial( string nom, string prenom, int puissanceVoiture, char categorie, List<NoteFrais> mesNotes)
@@ -35,7 +39,7 @@
             this.prenom = prenom;
             this.puissanceVoiture = puissanceVoiture;
             this.categorie = categorie;
-            mesNotes = new List<NoteFrais>();
+            this.mesNotes = mesNotes;
 
         }
 
@@ -59,28 +63,43 @@
             return this.categorie; 
         }
 
+        //Frais Transport 
         public void ajouterNote (DateTime date,int nbklm)
         {
             
-            mesNotes.Add(new NoteFrais(date,nbklm));
+            mesTransports.Add(new FraisTransport(date,nbklm));
+        }
+        
+        //Repas Midi
+        public void ajouterNote(DateTime date, double montantfacture)
+        {
+
+            mesRepasMidi.Add(new RepasMidi(date, montantfacture));
         }
 
-        public override string ToString()
+        // Nuités 
+       public void ajouterNote(DateTime date, char region)
+        {
+            mesNuites.Add(new Nuite(date,region));
+        }
+
+
+        public virtual string ToString()
         {
             string str = $"Nom : {nom} Prénom : {prenom} Puissance voiture : {puissanceVoiture} Categorie : {categorie}"; 
             return str;
         }
 
 
-        public void ajouterNoteFrais(NoteFrais f)
+        // Note Frais 
+       public void ajouterNoteFrais(NoteFrais f)
         {
             mesNotes.Add(f);
+           
+           
         }
 
-      
-
-
-
+       
 
 
 
