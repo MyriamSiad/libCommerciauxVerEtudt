@@ -64,23 +64,27 @@
         }
 
         //Frais Transport 
-        public void ajouterNote (DateTime date,int nbklm)
+        public  virtual void ajouterNote (DateTime date,int nbklm)
         {
             
             mesTransports.Add(new FraisTransport(date,nbklm));
+            mesNotes.Add(new FraisTransport(date,nbklm));
         }
         
         //Repas Midi
-        public void ajouterNote(DateTime date, double montantfacture)
+        public virtual  void ajouterNote(DateTime date, double montantfacture)
         {
 
             mesRepasMidi.Add(new RepasMidi(date, montantfacture));
+           
+            mesNotes.Add(new RepasMidi(date, montantfacture));
         }
 
         // Nuités 
-       public void ajouterNote(DateTime date, char region)
+       public  virtual void ajouterNote(DateTime date, double montantFacture,char region)
         {
-            mesNuites.Add(new Nuite(date,region));
+            mesNuites.Add(new Nuite(date,montantFacture,region));
+            mesNotes.Add(new Nuite(date, montantFacture, region));
         }
 
 
@@ -99,7 +103,22 @@
            
         }
 
-       
+        public double CumulNoteFraisRembourser (int annee)
+        {
+            double cumul = 0;
+            foreach(NoteFrais f in mesNotes)
+            {
+                if (f.GetDate().Year == annee)
+                {
+                    cumul += f.calculMontantARembourser();
+                }
+            }
+
+            return cumul;
+        }
+
+
+
 
 
 

@@ -13,7 +13,7 @@ namespace libCommerciaux
         private DateTime dateNoteFrais = new DateTime(2023,1,1);
         private Commercial leCommercial = new Commercial();
         private string NoteFraisType;
-      
+        
         private bool estRembourse = false;
         private double montantARembourser = 0;
         private int numero = 0 ;
@@ -61,6 +61,17 @@ namespace libCommerciaux
 
 
         }
+        public NoteFrais(DateTime date, double montant,char region)
+        {
+
+            this.dateNoteFrais = date;
+            leCommercial = new Commercial();
+
+
+
+        }
+
+
 
         public NoteFrais(DateTime date, Commercial c, string NoteFaisType)
         {

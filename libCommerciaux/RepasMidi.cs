@@ -28,12 +28,21 @@ namespace libCommerciaux
         }
         public override double calculMontantARembourser()
         {
-            double montant = this.getMontantARembourser();
+            double montant = this.montantFacture;
             double remboursement = 0.0;
             if (this.getLeCommercial().getCategorie() == 'A' )
             {
+                if (this.getMontantARembourser() >= 25)
+                {
 
-                remboursement = 25;
+                    remboursement = 25;
+                }
+                else
+                {
+
+                    remboursement = montant;
+
+                }
 
             }
 

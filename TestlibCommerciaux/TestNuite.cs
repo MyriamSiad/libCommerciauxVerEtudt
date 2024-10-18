@@ -95,7 +95,7 @@ namespace TestlibCommerciaux
             var date = new DateTime(2023, 1, 1);
             var commercial = Activator.CreateInstance(commercialType, new object[] { "Dupont", "Jean", 5, 'A' });
             double montantFacture = 100.50;
-            char region = 'A';
+            char region ='A';
             string attendu = "Nuité - Numéro : 1 - Date : 01/01/2023 00:00:00 - Montant à rembourser: 65 euros - Non remboursé - payé : 100,5 € - A -";
 
             // Act

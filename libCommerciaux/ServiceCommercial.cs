@@ -41,6 +41,9 @@ namespace libCommerciaux
             return i;
         }
 
+       
+
+
 
 
     }

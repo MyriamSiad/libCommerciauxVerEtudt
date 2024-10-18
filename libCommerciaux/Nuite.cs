@@ -27,7 +27,19 @@ namespace libCommerciaux
         {
             this.montantFacture = montantFacture;
             this.dateNoteFrais = dateNoteFrais;
-            //this.setMontantARembourser();
+           
+
+            this.setMontantARembourser();
+            numero++;
+        }
+
+        public Nuite(DateTime dateNoteFrais, double montantFacture, char region) : base(dateNoteFrais,montantFacture)
+        {
+            this.montantFacture = montantFacture;
+            this.dateNoteFrais = dateNoteFrais;
+            this.region=region;
+
+            this.setMontantARembourser();
             numero++;
         }
 
@@ -45,9 +57,17 @@ namespace libCommerciaux
                 remboursement = 65 * 0.90;
             }// Région 1, coefficient 0.90
 
-            else if (categorie == 'A')
+            else if (categorie == 'A' && region =='2' || categorie == 'A')
             {
-                remboursement = 65; // Région 2, coefficient 1 (pas de changement)
+                if (this.montantFacture >= 65)
+                {
+                    remboursement = 65; // Région 2, coefficient 1 (pas de changement)
+                }
+                else
+                {
+
+                    remboursement = this.montantFacture;
+                }
             }
 
             else
@@ -109,7 +129,7 @@ namespace libCommerciaux
 
             this.dateNoteFrais = date;
             this.numero++;
-            this.setMontantARembourser();
+           this.setMontantARembourser();
         }
 
         public override string ToString()
@@ -121,7 +141,7 @@ namespace libCommerciaux
                 flag = "Est remboursé";
             }
 
-            string str = $"Nuité - Numéro : {this.numero} - Date : {this.dateNoteFrais} - Montant à rembourser: {this.getMontantARembourser()} euros - {flag} - payé : {montantFacture} € - {this.getLeCommercial().getCategorie()} -";
+            string str = $"Nuité - Numéro : {this.numero} - Date : {this.dateNoteFrais} - Montant à rembourser: {this.calculMontantARembourser()} euros - {flag} - payé : {montantFacture} € - {this.getLeCommercial().getCategorie()} -";
 
             return str;
 
