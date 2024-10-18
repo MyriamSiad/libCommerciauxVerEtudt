@@ -9,6 +9,7 @@ namespace libCommerciaux
     public class ServiceCommercial: Commercial
     {
         private List<Commercial> lesCommerciaux = new List<Commercial>();
+        private List<NoteFrais> mesNotes = new List<NoteFrais>();
 
         public ServiceCommercial() 
         {
@@ -22,6 +23,30 @@ namespace libCommerciaux
         {
             
             lesCommerciaux.Add(unCommercial);
+        }
+
+        //Frais Transport 
+        public virtual void ajouterNote(Commercial c,DateTime date, int nbklm)
+        {
+
+            this.getMesNoteFrais().Add(new FraisTransport(date,c, nbklm));
+            //this.getMesNoteFrais().Add(new FraisTransport(date, nbklm));
+        }
+
+        //Repas Midi
+        public virtual void ajouterNote(Commercial c, DateTime date, double montantfacture)
+        {
+
+           // mesRepasMidi.Add(new RepasMidi(date, montantfacture));
+
+            this.getMesNoteFrais().Add(new RepasMidi(date, c,montantfacture));
+        }
+
+        // Nuités 
+        public virtual void ajouterNote(Commercial c, DateTime date, double montantFacture, char region)
+        {
+
+            this.getMesNoteFrais().Add(new Nuite(date, c, montantFacture, region));
         }
 
         public int nbFraisNonRembourses()

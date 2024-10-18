@@ -110,7 +110,7 @@
             {
                 if (f.GetDate().Year == annee)
                 {
-                    cumul += f.calculMontantARembourser();
+                    cumul =cumul +  f.calculMontantARembourser();
                 }
             }
 

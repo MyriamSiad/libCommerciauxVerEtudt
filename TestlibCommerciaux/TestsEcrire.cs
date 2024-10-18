@@ -102,17 +102,33 @@ namespace TestlibCommerciaux
 
 
             // Test Cumul de frais remboursé ServiceCommercial sc; 
-          /*  Commercial c1;
-            ServiceCommercial sc;
+            /*  Commercial c1;
+              ServiceCommercial sc;
 
-            sc = new ServiceCommercial();
-            c1 = new Commercial("Dupond", "Jean", 7, 'B');
-            sc.ajouterCommercial(c1);
-            sc.ajouterNote(c1, new DateTime(2013, 11, 15), 100);      // ajoute un frais de transport 
-            sc.ajouterNote(c1, new DateTime(2013, 11, 21), 15.5);     // ajoute une note de repas 
-            sc.ajouterNote(c1, new DateTime(2013, 11, 25), 105, '2');  // ajoute une nuité 
-            Console.WriteLine($"il y a {sc.nbFraisNonRembourses()} frais non remboursés");
-          */
+              sc = new ServiceCommercial();
+              c1 = new Commercial("Dupond", "Jean", 7, 'B');
+              sc.ajouterCommercial(c1);
+              sc.ajouterNote(c1, new DateTime(2013, 11, 15), 100);      // ajoute un frais de transport 
+              sc.ajouterNote(c1, new DateTime(2013, 11, 21), 15.5);     // ajoute une note de repas 
+              sc.ajouterNote(c1, new DateTime(2013, 11, 25), 105, '2');  // ajoute une nuité 
+              Console.WriteLine($"il y a {sc.nbFraisNonRembourses()} frais non remboursés");
+            */
+
+            // Test Ajout note frais pour services Commercial 
+            ServiceCommercial sc;
+            NoteFrais f0;
+            NoteFrais f1;
+            Commercial c1, c2;
+            Nuite N0;
+            c1= new Commercial("Jean", "Dupond", 8, 'A');
+            c2 = new Commercial("Jeanne", "Dupondd", 8, 'A');
+            //Agir
+
+            //Auditer
+           // Assert.AreEqual(c1.ajouterNote(DateTim(2022, 11, 12), c1, 80, '3'));
+
+
+
 
 
 
