@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace libCommerciaux
@@ -17,29 +19,33 @@ namespace libCommerciaux
 
         public Nuite() { }
 
-        public Nuite (DateTime date,  char region)
+        public Nuite(DateTime date, char region)
         {
             this.dateNoteFrais = date;
             this.region = region;
+            this.setMontantARembourser();
+            this.setFactureRembourser();
         }
 
         public Nuite(DateTime dateNoteFrais, double montantFacture) : base(dateNoteFrais, montantFacture)
         {
             this.montantFacture = montantFacture;
             this.dateNoteFrais = dateNoteFrais;
-           
+
 
             this.setMontantARembourser();
+            this.setFactureRembourser();
             numero++;
         }
 
-        public Nuite(DateTime dateNoteFrais, double montantFacture, char region) : base(dateNoteFrais,montantFacture)
+        public Nuite(DateTime dateNoteFrais, double montantFacture, char region) : base(dateNoteFrais, montantFacture)
         {
             this.montantFacture = montantFacture;
             this.dateNoteFrais = dateNoteFrais;
-            this.region=region;
+            this.region = region;
 
             this.setMontantARembourser();
+            this.setFactureRembourser();
             numero++;
         }
 
@@ -49,78 +55,213 @@ namespace libCommerciaux
 
             char categorie = this.getLeCommercial().getCategorie();
             char region = this.region;
+            double plafond = 0.0;
 
-            // Catégorie A
+            /////////////Catégorie A///////////////////
+            ///
+
+            //Catégorie A région 1 
+
             if (categorie == 'A' && region == '1')
             {
+                plafond = 65 * 0.90;
 
-                remboursement = 65 * 0.90;
-            }// Région 1, coefficient 0.90
 
-            else if (categorie == 'A' && region =='2' || categorie == 'A')
+                if (this.montantFacture < plafond)
+                {
+                    remboursement = this.montantFacture;
+
+                }
+
+                else
+                {
+                    
+                    remboursement = plafond;
+                }
+
+
+            }
+
+
+
+            //Catégorie A région 2 
+            if (categorie == 'A' && region == '2'  || (categorie == 'A'))
             {
-                if (this.montantFacture >= 65)
+                plafond = 65;
+                if (this.montantFacture >= plafond)
                 {
                     remboursement = 65; // Région 2, coefficient 1 (pas de changement)
                 }
                 else
                 {
+                   
 
                     remboursement = this.montantFacture;
                 }
             }
 
-            else
+
+
+            //Catégorie A région 3 
+
+            if (categorie == 'A' && region == '3')
             {
-                if (categorie == 'A' && region == '3')
+                plafond = 65 * 1.15;
+
+                if ((this.montantFacture >= plafond))
                 {
-                    remboursement = 65 * 1.15; // Région 3, coefficient 1.15
+                    remboursement = plafond; // Région 3, coefficient 1.15
+                }
+
+                else
+                {
+                   
+                    remboursement = this.montantFacture;
+                }
+            }
+
+
+
+
+
+            ////////////// Catégorie B///////////////
+            ///
+
+            /// Catégorie B région 1
+
+
+            if (categorie == 'B' && (region == '1'))
+            {
+                plafond = 55 * 0.90;
+
+
+                if ((this.montantFacture >= plafond))
+                {
+                    remboursement = plafond;
+                }
+
+                else
+                {
+                    
+                    remboursement = this.montantFacture;
+
+                }
+
+
+            }
+
+
+            /// Catégorie B région 2
+
+            if (categorie == 'B' && region == '2')
+            {
+                plafond = 55;
+                if (this.montantFacture >= plafond)
+                {
+
+                    remboursement = plafond;
+                }
+                else
+                {
+                  
+                    remboursement = this.montantFacture;
+                }
+            }
+
+
+            /// Catégorie B région 3
+
+            if (categorie == 'B' && region == '3')
+            {
+                plafond = 55 * 1.15;
+
+                if (this.montantFacture >= plafond)
+                {
+
+                    remboursement = plafond;
+                }
+                else
+                {
+                    
+                    remboursement = this.montantFacture;
+                }
+            }
+
+
+
+
+        //////////////// // Catégorie C //////////////
+           
+
+            ////// Catégorie C region 1
+            if (categorie == 'C' && region == '1')
+            {
+                plafond = 50 * 0.90;
+                if (this.montantFacture >= plafond)
+                {
+
+                    remboursement = plafond;
+                }
+                else
+                {
+                    
+                    remboursement = this.montantFacture;
+                }
+
+
+            }
+
+
+            // Categorie C region 2 
+
+            if (categorie == 'C' && region == '2')
+            {
+                plafond = 50;
+                if (this.montantFacture >= plafond)
+                {
+
+                    remboursement = plafond;
+                }
+                else
+                {
+                  
+                    remboursement = this.montantFacture;
+                }
+
+
+            }
+
+            // Categorie C region 3
+
+            if (categorie == 'C' && region == '3')
+            {
+
+                plafond = 50 * 1.15;
+                if (this.montantFacture >= plafond)
+                {
+
+                    remboursement = plafond;
+                }
+                else
+                {
+                   
+                    remboursement = this.montantFacture;
                 }
 
             }
 
-                if (categorie == 'B' && (region == '1'))
-                {
-
-                    remboursement = 55 * 0.90;
-                }
-
-                else if (categorie == 'B' && region == '2')
-                {
-                    remboursement = 55;
-                }
-                else
-                {
-                    if (categorie == 'B' && region == '3')
-                    {
-
-                        remboursement = 55 * 1.15;
-                    }
-                }
-
-
-                // Catégorie C
-                if (categorie == 'C' && region == '1')
-                {
-                    remboursement = 50 * 0.90;
-
-                }
-
-                else if (categorie == 'C' && region == '2')
-                {
-                    remboursement = 50;
-                }
-                else
-                {
-                    if (categorie == 'C' && region == '3')
-                    {
-                        remboursement = 50 * 1.15;
-                    }
-                }
-            
-
             return remboursement;
         }
+
+
+
+        /// <summary>
+        /// //Facture remboursé si le montant de la facture est totalement remboursé 
+        /// </summary>
+
+       
+
+        /// Construscteur 
 
         public Nuite(DateTime date, Commercial C, double montantFacture, char region) : base(date, C)
         {
@@ -130,6 +271,16 @@ namespace libCommerciaux
             this.dateNoteFrais = date;
             this.numero++;
            this.setMontantARembourser();
+            this.setFactureRembourser();
+        }
+
+
+        public void setFactureRembourser()
+        {
+            if (calculMontantARembourser() == montantFacture)
+            {
+                this.setRembourse();
+            }
         }
 
         public override string ToString()
@@ -142,7 +293,8 @@ namespace libCommerciaux
             }
 
             string str = $"Nuité - Numéro : {this.numero} - Date : {this.dateNoteFrais} - Montant à rembourser: {this.calculMontantARembourser()} euros - {flag} - payé : {montantFacture} € - {this.getLeCommercial().getCategorie()} -";
-
+            
+          
             return str;
 
         }

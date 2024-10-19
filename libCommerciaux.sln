@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "libCommerciaux", "libCommer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestlibCommerciaux", "TestlibCommerciaux\TestlibCommerciaux.csproj", "{6FACE10A-62D7-4E5B-89C5-D2F67FC29684}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1er_Test", "1er_Test\1er_Test.csproj", "{64567B5D-D651-487D-84BF-9AD4E4607AFF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "Console\Console.csproj", "{F96F4A19-11B4-40A2-80EC-9CCCF756D623}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console", "Console\Console.csproj", "{F96F4A19-11B4-40A2-80EC-9CCCF756D623}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{6FACE10A-62D7-4E5B-89C5-D2F67FC29684}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FACE10A-62D7-4E5B-89C5-D2F67FC29684}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FACE10A-62D7-4E5B-89C5-D2F67FC29684}.Release|Any CPU.Build.0 = Release|Any CPU
-		{64567B5D-D651-487D-84BF-9AD4E4607AFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64567B5D-D651-487D-84BF-9AD4E4607AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64567B5D-D651-487D-84BF-9AD4E4607AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64567B5D-D651-487D-84BF-9AD4E4607AFF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F96F4A19-11B4-40A2-80EC-9CCCF756D623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F96F4A19-11B4-40A2-80EC-9CCCF756D623}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F96F4A19-11B4-40A2-80EC-9CCCF756D623}.Release|Any CPU.ActiveCfg = Release|Any CPU

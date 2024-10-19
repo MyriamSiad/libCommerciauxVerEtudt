@@ -56,23 +56,25 @@ namespace libCommerciaux
 
 
         }
-        /*  public FraisTransport(DateTime dateNoteFrais,Commercial c, int nbKm, double montant) : base (dateNoteFrais,c, montant)
-            {
-                this.dateNoteFrais= dateNoteFrais;
-
-                this.c = c;
-
-
-                this.nbKm = nbKm;
-            }
-        */
+   
         public FraisTransport(DateTime dateNoteFrais, Commercial leCommercial, int nbKm)
            : base(dateNoteFrais, leCommercial) // Appel au constructeur de la classe de base
         {
             this.dateNoteFrais = dateNoteFrais ;
             this.nbKm = nbKm;
             this.numero++;
+           
             this.setMontantARembourser(); // Si 'setMontantARembourser' est une méthode à appeler dans le constructeur
+            this.setFactureRembourser();
+        }
+
+
+        public void setFactureRembourser()
+        {
+            if (calculMontantARembourser() != 0)
+            {
+                this.setRembourse();
+            }
         }
 
         public override string ToString()

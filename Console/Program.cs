@@ -10,5 +10,6 @@ sc.ajouterNote(c1, new DateTime(2013, 11, 21), 15.5);     // ajoute une note de 
 sc.ajouterNote(c1, new DateTime(2013, 11, 25), 105, '2');  // ajoute une nuité 
 sc.CumulNoteFraisRembourser(2013);
 Console.WriteLine($"il y a {sc.nbFraisNonRembourses()} frais non remboursés");
-Console.WriteLine(sc.getMesNoteFrais().Count());
-Console.WriteLine(sc.CumulNoteFraisRembourser(2013));
+
+Console.WriteLine(c1.CumulNoteFraisRembourser(2013));
+

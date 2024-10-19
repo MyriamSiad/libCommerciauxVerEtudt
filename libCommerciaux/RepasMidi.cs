@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace libCommerciaux
 {
-    public  class RepasMidi:NoteFrais
+    public class RepasMidi : NoteFrais
     {
         private DateTime dateNoteFrais;
         private double montantFacture;
@@ -14,29 +14,34 @@ namespace libCommerciaux
 
         public RepasMidi()
         {
-           
+
             //dateNoteFrais = new DateTime();
         }
 
 
-       public RepasMidi(DateTime date, double montantFacture)
+        public RepasMidi(DateTime date, double montantFacture)
         {
             this.dateNoteFrais = date;
-           
+
             this.montantFacture = montantFacture;
             this.numero++;
         }
         public override double calculMontantARembourser()
         {
+            char categorie = this.getLeCommercial().getCategorie();
             double montant = this.montantFacture;
+            double plafond = 0.0;
             double remboursement = 0.0;
-            if (this.getLeCommercial().getCategorie() == 'A' )
+            if (categorie == 'A')
             {
-                if (this.getMontantARembourser() >= 25)
-                {
+                plafond = 25;
 
-                    remboursement = 25;
+                if (montant >= plafond)
+                {
+                    remboursement = plafond;
                 }
+
+
                 else
                 {
 
@@ -46,27 +51,63 @@ namespace libCommerciaux
 
             }
 
-            else if (this.getLeCommercial().getCategorie() == 'B')
+            if (categorie == 'B')
             {
-                remboursement =  22 ;
+                plafond = 22;
+                if (montant >= plafond)
+                {
+                    remboursement = plafond;
+                }
+
+
+                else
+                {
+
+                    remboursement = montant;
+                   
+
+                }
             }
 
-            else
+
+
+            if (categorie == 'C')
             {
-                if (this.getLeCommercial().getCategorie() == 'C')
-                remboursement = 20;
+                plafond = 20;
+                if (montant >= plafond)
+                {
+                    remboursement = plafond;
+                }
+
+
+                else
+                {
+             
+                    remboursement = montant;
+
+                }
+
             }
-
-
+           
             return remboursement;
+
+        }
+
+        public void setFactureRembourser()
+        {
+            if (calculMontantARembourser() == montantFacture)
+            {
+                this.setRembourse();
+            }
         }
 
         public RepasMidi(DateTime dateNoteFrais, Commercial leCommercial, double montantFacture) : base(dateNoteFrais, leCommercial) // Appel au constructeur de la classe de base
         {
-           this.dateNoteFrais = dateNoteFrais;
+            this.dateNoteFrais = dateNoteFrais;
             this.numero++;
-           this.montantFacture=montantFacture;
-           this.setMontantARembourser(); // Si 'setMontantARembourser' est une méthode à appeler dans le constructeur
+            this.montantFacture = montantFacture;
+            this.setMontantARembourser(); // Si 'setMontantARembourser' est une méthode à appeler dans le constructeur
+            this.setFactureRembourser();
         }
 
 

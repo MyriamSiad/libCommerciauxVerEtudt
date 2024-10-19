@@ -10,7 +10,7 @@ namespace libCommerciaux
     public class NoteFrais
     {
 
-        private DateTime dateNoteFrais = new DateTime(2023,1,1);
+        private DateTime dateNoteFrais = new DateTime(2023,01,01);
         private Commercial leCommercial = new Commercial();
         private string NoteFraisType;
         
@@ -22,8 +22,9 @@ namespace libCommerciaux
 
         public NoteFrais() {
 
-         
 
+
+             dateNoteFrais = new DateTime();
         }
 
        public NoteFrais(DateTime date, Commercial c)
@@ -81,7 +82,7 @@ namespace libCommerciaux
          
         }
 
-        public DateTime GetDate() { return dateNoteFrais = new DateTime(); }
+        public DateTime GetDate() { return dateNoteFrais; }
 
         public Commercial getLeCommercial() { return leCommercial; }
 
@@ -96,9 +97,16 @@ namespace libCommerciaux
 
         public void setMontantARembourser( )
         {
-           this.montantARembourser = calculMontantARembourser();
+          this.montantARembourser = calculMontantARembourser();
+            
+           
         }
 
+    
+
+
+
+    
 
         public bool getEstRembourse() 
         { return estRembourse;

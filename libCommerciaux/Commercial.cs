@@ -80,8 +80,12 @@
             mesNotes.Add(new RepasMidi(date, montantfacture));
         }
 
+     
+
+
+
         // Nuités 
-       public  virtual void ajouterNote(DateTime date, double montantFacture,char region)
+        public  virtual void ajouterNote(DateTime date, double montantFacture,char region)
         {
             mesNuites.Add(new Nuite(date,montantFacture,region));
             mesNotes.Add(new Nuite(date, montantFacture, region));
@@ -108,9 +112,11 @@
             double cumul = 0;
             foreach(NoteFrais f in mesNotes)
             {
+                //Console.WriteLine(f.GetDate().Year);
                 if (f.GetDate().Year == annee)
                 {
-                    cumul =cumul +  f.calculMontantARembourser();
+
+                    cumul=cumul+f.calculMontantARembourser();
                 }
             }
 
